@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Email } from '../email/email';
 
 @Component({
   imports: [],
@@ -8,15 +7,13 @@ import { Email } from '../email/email';
   templateUrl: './contact.html',
 })
 export class Contact {
-  @Input() firstName: string='';
-  @Input() lastName: string='';
-  @Input() classNumber: number=0;
-  @Input() gradeNumber: number=0;
-  @Input() subject: string='';
-  @Input() status: Boolean= true;
-  @Input() email: Email='';
-  @Input() phoneNumber: string='';
-  @Input() adress: string='';
-
-
+  @Input() firstName = '';
+  @Input() lastName = '';
+  @Input() classNumber = 0;
+  @Input() gradeNumber = 0;
+  @Input() subject = '';
+  @Input() status = true;
+  @Input() email = '';
+  @Input() phoneNumber = '';
+  @Input() adress = '';
 }

@@ -1,0 +1,57 @@
+<section class="homepage">
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">מערכת ניהול כיתתית</p>
+      <h1>Maarechet</h1>
+      <p class="subtitle">
+        ניהול אנשי קשר, תלמידים, קבוצות ותקשורת במקום אחד — בצורה מסודרת, נגישה וברורה.
+      </p>
+      <div class="hero__actions">
+        <button class="primary">צפייה בתלמידים</button>
+        <button class="secondary">ניהול קבוצות</button>
+      </div>
+    </div>
+
+    <div class="hero__panel" aria-label="סטטיסטיקות מערכת">
+      <div class="mini-card" *ngFor="let stat of stats">
+        <span>{{ stat.label }}</span>
+        <strong class="{{ stat.color }}">{{ stat.value }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="stats-grid" aria-label="מידע כללי">
+    <article class="stat-card" *ngFor="let stat of stats">
+      <span class="stat-card__label">{{ stat.label }}</span>
+      <strong class="stat-card__value {{ stat.color }}">{{ stat.value }}</strong>
+    </article>
+  </section>
+
+  <section class="content-grid">
+    <div class="panel wide">
+      <app-contacts />
+    </div>
+
+    <div class="panel">
+      <app-group />
+    </div>
+
+    <div class="panel">
+      <app-email />
+    </div>
+
+    <div class="panel wide">
+      <app-contact
+        [firstName]="featuredContact.firstName"
+        [lastName]="featuredContact.lastName"
+        [classNumber]="featuredContact.classNumber"
+        [gradeNumber]="featuredContact.gradeNumber"
+        [subject]="featuredContact.subject"
+        [status]="featuredContact.status"
+        [email]="featuredContact.email"
+        [phoneNumber]="featuredContact.phoneNumber"
+        [adress]="featuredContact.adress"
+      />
+    </div>
+  </section>
+</section>

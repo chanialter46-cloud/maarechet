@@ -1,13 +1,18 @@
-<p>contact works!</p>
-<div>
-    <h3>שם:{{ firstName}}</h3>
-    <h3>משפחה:{{ lastName}}</h3>
-    <h3>כיתה:{{ classNumber}}</h3>
-    <h3>מספר מחזור:{{ gradeNumber}}</h3>
+<article class="profile-card">
+  <div class="profile-card__header">
+    <div class="avatar">{{ firstName.charAt(0) }}{{ lastName.charAt(0) }}</div>
+    <div>
+      <h3>{{ firstName }} {{ lastName }}</h3>
+      <span class="tag">{{ status ? 'פעיל' : 'לא פעיל' }}</span>
+    </div>
+  </div>
 
-    <h3>מסלול:{{ subject}}</h3>
-    <h3>סטטוס:{{ status}}</h3>
-    <h3>מייל:{{ email}}</h3>
-    <h3>טלפון:{{ phoneNumber}}</h3>
-    <h3>כתובת:{{ adress}}</h3>
-</div>
+  <div class="detail-list">
+    <div class="detail-item"><span>כיתה</span><strong>{{ classNumber }}</strong></div>
+    <div class="detail-item"><span>מחזור</span><strong>{{ gradeNumber }}</strong></div>
+    <div class="detail-item"><span>מסלול</span><strong>{{ subject }}</strong></div>
+    <div class="detail-item"><span>מייל</span><strong>{{ email }}</strong></div>
+    <div class="detail-item"><span>טלפון</span><strong>{{ phoneNumber }}</strong></div>
+    <div class="detail-item"><span>כתובת</span><strong>{{ adress }}</strong></div>
+  </div>
+</article>
