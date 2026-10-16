@@ -1,18 +1,55 @@
-<article class="profile-card">
-  <div class="profile-card__header">
-    <div class="avatar">{{ firstName.charAt(0) }}{{ lastName.charAt(0) }}</div>
-    <div>
-      <h3>{{ firstName }} {{ lastName }}</h3>
-      <span class="tag">{{ status ? 'פעיל' : 'לא פעיל' }}</span>
+<article class="contact-entry">
+  @if (draft; as editingContact) {
+    <form class="contact-form" (ngSubmit)="save()">
+      <label>
+        שם מלא
+        <input name="name" [(ngModel)]="editingContact.name" required />
+      </label>
+      <label>
+        כתובת מייל
+        <input name="email" type="email" [(ngModel)]="editingContact.email" required />
+      </label>
+      <label>
+        כתובת מגורים
+        <input name="address" [(ngModel)]="editingContact.address" required />
+      </label>
+      <label>
+        קבוצה
+        <select name="group" [(ngModel)]="editingContact.group" required>
+          @for (group of groups; track group.name) {
+            <option [value]="group.name">{{ group.name }}</option>
+          }
+        </select>
+      </label>
+      <div class="contact-actions">
+        <button class="save-button" type="submit">שמירת שינויים</button>
+        <button class="text-button" type="button" (click)="cancelEditing()">ביטול</button>
+      </div>
+    </form>
+  } @else {
+    <div class="contact-heading">
+      <div class="contact-identity">
+        <span class="avatar" aria-hidden="true">{{ contact.name.charAt(0) }}</span>
+        <h3>{{ contact.name }}</h3>
+      </div>
+      <div class="contact-actions">
+        <button class="text-button" type="button" aria-label="עריכת איש קשר" (click)="startEditing()">עריכה</button>
+        <button class="delete-button" type="button" aria-label="מחיקת איש קשר" (click)="delete()">מחיקה</button>
+      </div>
     </div>
-  </div>
-
-  <div class="detail-list">
-    <div class="detail-item"><span>כיתה</span><strong>{{ classNumber }}</strong></div>
-    <div class="detail-item"><span>מחזור</span><strong>{{ gradeNumber }}</strong></div>
-    <div class="detail-item"><span>מסלול</span><strong>{{ subject }}</strong></div>
-    <div class="detail-item"><span>מייל</span><strong>{{ email }}</strong></div>
-    <div class="detail-item"><span>טלפון</span><strong>{{ phoneNumber }}</strong></div>
-    <div class="detail-item"><span>כתובת</span><strong>{{ adress }}</strong></div>
-  </div>
+    <dl class="contact-details">
+      <div>
+        <dt>מייל</dt>
+        <dd><a [href]="'mailto:' + contact.email">{{ contact.email }}</a></dd>
+      </div>
+      <div>
+        <dt>כתובת מגורים</dt>
+        <dd>{{ contact.address }}</dd>
+      </div>
+      <div>
+        <dt>קבוצה</dt>
+        <dd><span class="group-tag">{{ contact.group }}</span></dd>
+      </div>
+    </dl>
+  }
 </article>

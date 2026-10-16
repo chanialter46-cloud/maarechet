@@ -1,21 +1,17 @@
 <section class="section-card">
   <div class="section-header">
     <h2>קבוצות</h2>
-    <span class="pill">14 קבוצות</span>
+    <span class="pill">{{ groups.length }} קבוצות</span>
   </div>
 
   <div class="group-grid">
-    <div class="group-box blue">
-      <strong>פיתוח אתרים</strong>
-      <span>12 תלמידים</span>
-    </div>
-    <div class="group-box purple">
-      <strong>עיצוב UX</strong>
-      <span>8 תלמידים</span>
-    </div>
-    <div class="group-box green">
-      <strong>AI ונתונים</strong>
-      <span>10 תלמידים</span>
-    </div>
+    @for (group of groups; track group.name) {
+      <div class="group-box {{ group.color }}">
+        <strong>{{ group.name }}</strong>
+        <span>{{ countContacts(group.name) }} אנשי קשר</span>
+      </div>
+    } @empty {
+      <p class="empty-state">אין קבוצות להצגה.</p>
+    }
   </div>
 </section>

@@ -29,29 +29,24 @@
 
   <section class="content-grid">
     <div class="panel wide">
-      <app-contacts />
+      <app-contacts
+        [contacts]="contacts"
+        [groups]="groups"
+        [newContactId]="newContactId"
+        (create)="createContact()"
+        (saved)="saveContact($event)"
+        (deleted)="deleteContact($event)"
+        (cancelled)="cancelContact($event)"
+      />
     </div>
 
     <div class="panel">
-      <app-group />
+      <app-group [groups]="groups" [contacts]="contacts" />
     </div>
 
     <div class="panel">
       <app-email />
     </div>
 
-    <div class="panel wide">
-      <app-contact
-        [firstName]="featuredContact.firstName"
-        [lastName]="featuredContact.lastName"
-        [classNumber]="featuredContact.classNumber"
-        [gradeNumber]="featuredContact.gradeNumber"
-        [subject]="featuredContact.subject"
-        [status]="featuredContact.status"
-        [email]="featuredContact.email"
-        [phoneNumber]="featuredContact.phoneNumber"
-        [adress]="featuredContact.adress"
-      />
-    </div>
   </section>
 </section>

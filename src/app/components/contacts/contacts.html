@@ -1,30 +1,23 @@
 <section class="section-card">
   <div class="section-header">
     <h2>אנשי קשר</h2>
-    <button class="chip">+ חדש</button>
+    <div class="header-actions">
+      <span class="contact-count">{{ contacts.length }} אנשי קשר</span>
+      <button class="add-contact" type="button" (click)="create.emit()">+ הוספת איש קשר</button>
+    </div>
   </div>
 
-  <ul class="list">
-    <li>
-      <div>
-        <strong>אייל כהן</strong>
-        <small>רכז כיתה</small>
-      </div>
-      <span class="state ok">פעיל</span>
-    </li>
-    <li>
-      <div>
-        <strong>נועה לוי</strong>
-        <small>מדריכה</small>
-      </div>
-      <span class="state ok">פעיל</span>
-    </li>
-    <li>
-      <div>
-        <strong>מיכאל רז</strong>
-        <small>מנהל קבוצה</small>
-      </div>
-      <span class="state warn">ממתין</span>
-    </li>
-  </ul>
+  @for (contact of contacts; track contact.id) {
+    <app-contact
+      [contact]="contact"
+      [groups]="groups"
+      [initialEditing]="contact.id === newContactId"
+      [isNew]="contact.id === newContactId"
+      (saved)="saved.emit($event)"
+      (deleted)="deleted.emit($event)"
+      (cancelled)="cancelled.emit($event)"
+    />
+  } @empty {
+    <p class="empty-state">אין אנשי קשר להצגה.</p>
+  }
 </section>

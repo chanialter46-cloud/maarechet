@@ -18,58 +18,32 @@
   font-size: 1.3rem;
 }
 
-.chip {
-  border: none;
-  background: #dbeafe;
-  color: #1d4ed8;
-  border-radius: 999px;
-  padding: 0.45rem 0.8rem;
-  font-weight: 600;
-}
-
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.header-actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.list li {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: white;
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  border-radius: 12px;
-  padding: 0.8rem 0.9rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.7rem;
 }
 
-.list strong {
-  display: block;
-  color: #0f172a;
+.add-contact {
+  min-height: 36px;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid #17624f;
+  border-radius: 4px;
+  background: #17624f;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
 }
 
-.list small {
-  display: block;
-  color: #64748b;
-  margin-top: 0.2rem;
+.contact-count {
+  color: #657782;
+  font-size: 0.8rem;
 }
 
-.state {
-  border-radius: 999px;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-
-.state.ok {
-  background: #dcfce7;
-  color: #166534;
-}
-
-.state.warn {
-  background: #fef3c7;
-  color: #92400e;
+.empty-state {
+  margin: 0;
+  padding: 1rem 0;
+  color: #657782;
 }

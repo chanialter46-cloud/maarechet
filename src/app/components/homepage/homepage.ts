@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Contact } from '../contact/contact';
+import { ContactGroup, ContactInfo } from '../contact/contact.model';
 import { Contacts } from '../contacts/contacts';
 import { Email } from '../email/email';
 import { Group } from '../group/group';
 
 @Component({
   selector: 'app-homepage',
-  imports: [CommonModule, Contact, Contacts, Email, Group],
+  imports: [CommonModule, Contacts, Email, Group],
   styleUrl: './homepage.css',
   templateUrl: './homepage.html',
 })
@@ -19,15 +19,46 @@ export class Homepage {
     { label: 'סטטוסים', value: '92%', color: 'orange' },
   ];
 
-  readonly featuredContact = {
-    firstName: 'אייל',
-    lastName: 'כהן',
-    classNumber: 12,
-    gradeNumber: 2026,
-    subject: 'פיתוח אתרים',
-    status: true,
-    email: 'ayal@maarechet.com',
-    phoneNumber: '050-123-4567',
-    adress: 'תל אביב',
-  };
+  readonly groups: ContactGroup[] = [
+    { name: 'פיתוח אתרים', color: 'blue' },
+    { name: 'עיצוב UX', color: 'purple' },
+    { name: 'AI ונתונים', color: 'green' },
+  ];
+
+  contacts: ContactInfo[] = [
+    { id: 1, name: 'אייל כהן', email: 'ayal@maarechet.com', address: 'תל אביב', group: 'פיתוח אתרים' },
+    { id: 2, name: 'נועה לוי', email: 'noa@maarechet.com', address: 'חיפה', group: 'עיצוב UX' },
+    { id: 3, name: 'מיכאל רז', email: 'michael@maarechet.com', address: 'ירושלים', group: 'AI ונתונים' },
+  ];
+  newContactId: number | null = null;
+
+  createContact(): void {
+    if (this.newContactId !== null) return;
+    const id = Math.max(0, ...this.contacts.map((contact) => contact.id)) + 1;
+    const newContact: ContactInfo = {
+      id,
+      name: '',
+      email: '',
+      address: '',
+      group: this.groups[0]?.name ?? '',
+    };
+    this.newContactId = id;
+    this.contacts = [newContact, ...this.contacts];
+  }
+
+  saveContact(updatedContact: ContactInfo): void {
+    this.contacts = this.contacts.map((contact) =>
+      contact.id === updatedContact.id ? updatedContact : contact,
+    );
+    if (this.newContactId === updatedContact.id) this.newContactId = null;
+  }
+
+  deleteContact(contactId: number): void {
+    this.contacts = this.contacts.filter((contact) => contact.id !== contactId);
+    if (this.newContactId === contactId) this.newContactId = null;
+  }
+
+  cancelContact(contactId: number): void {
+    this.deleteContact(contactId);
+  }
 }
